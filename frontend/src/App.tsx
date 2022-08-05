@@ -1,11 +1,20 @@
 import React from "react";
 import "./App.css";
-import axios from "axios";
+import { getAllCities } from "./services/CityService";
+import { getAllCitizens } from "./services/CitizenService";
 
 function App() {
   React.useEffect(() => {
-    axios.get("/api/cities").then((res) => {
-      console.log(res);
+    getAllCities().then((res) => {
+      if (res.ok) {
+        console.log(res.data);
+      }
+    });
+
+    getAllCitizens().then((res) => {
+      if (res.ok) {
+        console.log(res.data);
+      }
     });
   }, []);
 
