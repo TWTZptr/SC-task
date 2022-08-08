@@ -4,6 +4,7 @@ import { getAllCitizens } from "../../../services/CitizenService";
 import { TreeData } from "../../../types/TreeData";
 import { buildTreeData } from "../../../utils/BuildTreeData";
 import { TreeNode } from "../TreeNode/TreeNode";
+import "./TreeRoot.scss";
 
 export const TreeRoot = () => {
   const [treeData, setTreeData] = React.useState<TreeData | null>(null);
@@ -44,5 +45,5 @@ export const TreeRoot = () => {
     );
   }
 
-  return <div>{sublevels}</div>;
+  return <div className="tree">{sublevels}</div>;
 };
