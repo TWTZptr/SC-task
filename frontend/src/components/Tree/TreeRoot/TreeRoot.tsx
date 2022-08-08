@@ -3,6 +3,7 @@ import { getAllCities } from "../../../services/CityService";
 import { getAllCitizens } from "../../../services/CitizenService";
 import { TreeData } from "../../../types/TreeData";
 import { buildTreeData } from "../../../utils/BuildTreeData";
+import { TreeNode } from "../TreeNode/TreeNode";
 
 export const TreeRoot = () => {
   const [treeData, setTreeData] = React.useState<TreeData | null>(null);
@@ -27,5 +28,21 @@ export const TreeRoot = () => {
     fetchCitiesAndCitizens();
   }, []);
 
-  return <div></div>;
+  if (!treeData) {
+    return <div>Построение дерева...</div>;
+  }
+
+  const sublevels: React.ReactNode[] = [];
+  for (const key in treeData.sublevels) {
+    const child = treeData.sublevels[key];
+    sublevels.push(
+      <TreeNode
+        citiesData={treeData.citiesData}
+        sublevel={child}
+        key={JSON.stringify(child.group)}
+      />
+    );
+  }
+
+  return <div>{sublevels}</div>;
 };
