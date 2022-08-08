@@ -1,3 +1,6 @@
 .tree {
   cursor: default;
+  & > ul {
+    padding-left: 20px;
+  }
 }
