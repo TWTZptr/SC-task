@@ -1,0 +1,12 @@
+.tree__citizen {
+  position: relative;
+  display: inline-block;
+  padding: 0 5px;
+  border-radius: 2px;
+  --cooltipz-cursor: default;
+
+  &:hover {
+    cursor: default;
+    background-color: white;
+  }
+}

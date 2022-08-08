@@ -2,6 +2,7 @@ import React from "react";
 import { CitiesData } from "../../../types/CitiesData";
 import { Sublevel } from "../../../types/Sublevel";
 import "./TreeNode.scss";
+import { TreeLeaf } from "../TreeLeaf/TreeLeaf";
 
 interface TreeNodeProps {
   citiesData: CitiesData;
@@ -11,7 +12,9 @@ interface TreeNodeProps {
 export const TreeNode = React.memo(
   ({ citiesData, sublevel }: TreeNodeProps) => {
     const citizens = sublevel.citizens.map((citizen) => (
-      <li key={citizen._id}>{citizen.name}</li>
+      <li key={citizen._id}>
+        <TreeLeaf citizen={citizen} city={citiesData[citizen.city_id]} />
+      </li>
     ));
 
     const sublevels: React.ReactNode[] = [];
