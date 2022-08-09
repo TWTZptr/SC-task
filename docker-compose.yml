@@ -1,0 +1,35 @@
+version: '3.0'
+
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+    ports:
+      - '3000:3000'
+    depends_on:
+          - db
+    restart: always
+    command: yarn start:dev
+    environment:
+      - APP_PORT=3000
+      - DB_HOST=db
+      - DB_PORT=27017
+
+  db:
+    container_name: db
+    image: mongo
+    ports:
+      - "27017:27017"
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://localhost:27017
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+    command: yarn start
+    ports:
+      - "3001:3001"
+    restart: always
