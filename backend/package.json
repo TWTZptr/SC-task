@@ -1,6 +1,6 @@
 {
-  "name": "steady-control-task",
-  "version": "0.0.1",
+  "name": "sc-backend",
+  "version": "1.0.0",
   "description": "",
   "author": "",
   "private": true,
