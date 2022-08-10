@@ -1,23 +1,23 @@
 version: '3.0'
 
 services:
-  backend:
-    container_name: backend
+  sc-task-backend:
+    container_name: sc-task-backend
     build:
       context: ./backend
     ports:
       - '3000:3000'
     depends_on:
-          - db
+      - sc-task-db
     restart: always
     command: yarn start:dev
     environment:
       - APP_PORT=3000
-      - DB_HOST=db
+      - DB_HOST=sc-task-db
       - DB_PORT=27017
 
-  db:
-    container_name: db
+  sc-task-db:
+    container_name: sc-task-db
     image: mongo
     ports:
       - "27017:27017"
@@ -29,8 +29,8 @@ services:
       - ./backend/mongo/mongo-init.js:/docker-entrypoint-initdb.d/init.js
       - ./backend/mongo/volume:/data/db
 
-  frontend:
-    container_name: frontend
+  sc-task-frontend:
+    container_name: sc-task-frontend
     build:
       context: ./frontend
     command: yarn start
